@@ -10,8 +10,8 @@ created: '2025-02-24'
 modified: '2026-03-16'
 position: Consumer
 tags:
-  - Flowers
   - Florists
+  - Flowers
 url: >-
   https://raw.githubusercontent.com/api-evangelist/florist-one/refs/heads/main/apis.yml
 specificationVersion: '0.19'
@@ -19,8 +19,8 @@ apis:
   - aid: florist-one:florist-one
     name: Florist One
     tags:
-      - Flowers
       - Florists
+      - Flowers
     humanURL: https://www.floristone.com/api/
     properties:
       - url: https://www.floristone.com/api/
