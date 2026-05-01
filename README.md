@@ -1,42 +1,60 @@
 # Florist One (florist-one)
-Florist One is a renowned online flower delivery service that specializes in creating and delivering stunning floral arrangements for any occasion. With a vast network of local florists across the United States and Canada, Florist One ensures that every bouquet is handcrafted with fresh, high-quality blooms and delivered promptly to the recipient's doorstep. Whether it's a birthday, anniversary, wedding, or sympathy tribute, Florist One provides a seamless and personalized experience, making it easy to send heartfelt messages through the beauty of flowers. Their commitment to excellence and customer satisfaction has made them a trusted choice for customers seeking elegant and thoughtful floral gifts.
+
+Florist One is an online flower delivery service that specializes in creating and delivering floral arrangements for any occasion through a network of local florists across the United States and Canada. The company handcrafts bouquets with fresh, high-quality blooms and delivers them to recipients for birthdays, anniversaries, weddings, sympathy, and other occasions, with a focus on personalized customer experience and timely fulfillment.
+
+For developers, Florist One offers a free REST web service that allows integration of flower products, ordering, and delivery into third-party applications. The API can be consumed from any common web programming language including Java, PHP, ASP.NET, JavaScript, Node, Python, Perl, Ruby, and ColdFusion, making it suitable for ecommerce, gifting, and concierge integrations that need same-day or next-day flower delivery.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/florist-one/refs/heads/main/apis.yml)
 
 ## Scope
 
-- **Type:** Index 
-- **Position:** Consumer 
-- **Access:** 3rd-Party 
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
 
-## Tags:
+## Tags
 
- - Flowers, Florists
-
-## Timestamps
-
-- **Created:** 2025-02-24 
-- **Modified:** 2025-02-28 
+- Delivery
+- Ecommerce
+- Florists
+- Flowers
+- Gifts
 
 ## APIs
 
-### Florist One
-Florist One is a reliable and innovative online florist service that provides customers with a wide variety of fresh and beautifully arranged flowers for any occasion. With a network of local florists across the country, Florist One ensures that all arrangements are hand-delivered with care and attention to detail. Whether you need a stunning bouquet for a birthday, anniversary, or sympathy gesture, Florist One offers a seamless ordering process and exceptional customer service to make sure every floral delivery is perfect. Trusted for their quality products and timely deliveries, Florist One is the go-to destination for all your floral needs.
+### Florist One API
+
+Florist One provides a free REST API for searching available flower products, retrieving product details and imagery, placing orders for delivery through the Florist One network, and checking order status. It is designed for ecommerce, gifting, and concierge applications that want to offer flower delivery as a feature.
 
 **Human URL:** [https://www.floristone.com/api/](https://www.floristone.com/api/)
 
+#### Tags
 
-#### Tags:
-
- - Flowers, Florists
+- Delivery, Ecommerce, Florists, Flowers, Gifts
 
 #### Properties
 
 - [Documentation](https://www.floristone.com/api/)
+- [Technical Information](https://www.floristone.com/api/technical-information/)
+- [How It Works](https://www.floristone.com/api/how-it-works/)
+- [FAQ](https://www.floristone.com/api/flowers-api-faq/)
+- [Contact](https://www.floristone.com/api/api-contact/)
+
+## Common Properties
+
+- [Website](https://www.floristone.com/)
+- [Documentation](https://www.floristone.com/api/)
+- [Technical Information](https://www.floristone.com/api/technical-information/)
+- [FAQ](https://www.floristone.com/api/flowers-api-faq/)
+- [Contact](https://www.floristone.com/api/api-contact/)
+
+## Timestamps
+
+- **Created:** 2025-02-24
+- **Modified:** 2026-04-28
 
 ## Maintainers
 
 **FN:** Kin Lane
 
-**Email:** info@apievangelist.com
-
+**Email:** kin@apievangelist.com
