@@ -52,6 +52,8 @@ apis:
       - url: https://www.floristone.com/api/api-contact/
         type: Contact
 common:
+  - type: GitHubOrganization
+    url: https://github.com/FloristOne
   - type: Website
     url: https://www.floristone.com/
   - type: Documentation
