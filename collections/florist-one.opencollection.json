@@ -1,0 +1,315 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Florist One REST API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FlowerShop",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get flower products by category or product code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.floristone.com/api/rest/flowershop/getproducts",
+            "params": [
+              {
+                "name": "category",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get flower products by category or product code"
+        },
+        {
+          "info": {
+            "name": "Check available delivery dates for a ZIP code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.floristone.com/api/rest/flowershop/checkdeliverydate",
+            "params": [
+              {
+                "name": "zipcode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Check available delivery dates for a ZIP code"
+        },
+        {
+          "info": {
+            "name": "Calculate order total including service charges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.floristone.com/api/rest/flowershop/gettotal",
+            "params": [
+              {
+                "name": "products",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "affiliateservicecharge",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "masterservicecharge",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Calculate order total including service charges"
+        },
+        {
+          "info": {
+            "name": "Place a flower order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.floristone.com/api/rest/flowershop/placeorder",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Place a flower order"
+        },
+        {
+          "info": {
+            "name": "Get order information by order number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.floristone.com/api/rest/flowershop/getorderinfo",
+            "params": [
+              {
+                "name": "orderno",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get order information by order number"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "GiftBaskets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get gift basket products by category or code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.floristone.com/api/rest/giftbaskets/getproducts",
+            "params": [
+              {
+                "name": "category",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get gift basket products by category or code"
+        },
+        {
+          "info": {
+            "name": "Calculate gift basket order total",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.floristone.com/api/rest/giftbaskets/gettotal",
+            "params": [
+              {
+                "name": "products",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Calculate gift basket order total"
+        },
+        {
+          "info": {
+            "name": "Place a gift basket order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.floristone.com/api/rest/giftbaskets/placeorder",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Place a gift basket order"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ShoppingCart",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get shopping cart contents by session id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.floristone.com/api/rest/shoppingcart",
+            "params": [
+              {
+                "name": "sessionid",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get shopping cart contents by session id"
+        },
+        {
+          "info": {
+            "name": "Create cart, add to cart, remove from cart, or clear cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.floristone.com/api/rest/shoppingcart",
+            "params": [
+              {
+                "name": "sessionid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "productcode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "action",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Action is determined by the `action` query parameter (e.g. `add`,\n`remove`, `clear`) or by omitting it when creating a new cart.\n"
+        },
+        {
+          "info": {
+            "name": "Destroy shopping cart for a session id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://www.floristone.com/api/rest/shoppingcart",
+            "params": [
+              {
+                "name": "sessionid",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Destroy shopping cart for a session id"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Affiliate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit affiliate legal agreement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.floristone.com/api/rest/affiliate/legalagreement",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Submit affiliate legal agreement"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
