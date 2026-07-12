@@ -52,6 +52,10 @@ apis:
       - url: https://www.floristone.com/api/api-contact/
         type: Contact
 common:
+  - type: DomainSecurity
+    url: security/florist-one-domain-security.yml
+  - type: Authentication
+    url: authentication/florist-one-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/FloristOne
   - type: Website

@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/florist-one-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic auth with API Key as username and assigned password
+  sources:
+  - openapi/florist-one-openapi.yml
