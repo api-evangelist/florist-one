@@ -52,6 +52,8 @@ apis:
       - url: https://www.floristone.com/api/api-contact/
         type: Contact
 common:
+  - type: AgenticAccess
+    url: agentic-access/florist-one-agentic-access.yml
   - type: DomainSecurity
     url: security/florist-one-domain-security.yml
   - type: Authentication
