@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: Florist One REST Affiliate ShoppingCart API
+  version: '1.0'
+  description: 'Best-effort OpenAPI 3.1 description of the Florist One REST API, derived
+
+    from the public sample code published by Florist One at
+
+    https://github.com/fhwsolutions/FloristOne_API and the public documentation
+
+    at https://www.floristone.com/api/. All endpoints use HTTP Basic
+
+    authentication with an `API Key` (username) and password issued by Florist
+
+    One. Responses are JSON.
+
+    '
+  contact:
+    name: Florist One
+    url: https://www.floristone.com/api/
+servers:
+- url: https://www.floristone.com/api/rest
+  description: Production
+security:
+- basicAuth: []
+tags:
+- name: ShoppingCart
+paths:
+  /shoppingcart:
+    get:
+      tags:
+      - ShoppingCart
+      summary: Get shopping cart contents by session id
+      parameters:
+      - name: sessionid
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/Json'
+    post:
+      tags:
+      - ShoppingCart
+      summary: Create cart, add to cart, remove from cart, or clear cart
+      description: 'Action is determined by the `action` query parameter (e.g. `add`,
+
+        `remove`, `clear`) or by omitting it when creating a new cart.
+
+        '
+      parameters:
+      - name: sessionid
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: productcode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: action
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - add
+          - remove
+          - clear
+      requestBody:
+        required: false
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          $ref: '#/components/responses/Json'
+    delete:
+      tags:
+      - ShoppingCart
+      summary: Destroy shopping cart for a session id
+      parameters:
+      - name: sessionid
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/Json'
+components:
+  responses:
+    Json:
+      description: JSON response
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic auth with API Key as username and assigned password

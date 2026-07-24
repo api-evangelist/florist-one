@@ -1,0 +1,57 @@
+openapi: 3.1.0
+info:
+  title: Florist One REST Affiliate API
+  version: '1.0'
+  description: 'Best-effort OpenAPI 3.1 description of the Florist One REST API, derived
+
+    from the public sample code published by Florist One at
+
+    https://github.com/fhwsolutions/FloristOne_API and the public documentation
+
+    at https://www.floristone.com/api/. All endpoints use HTTP Basic
+
+    authentication with an `API Key` (username) and password issued by Florist
+
+    One. Responses are JSON.
+
+    '
+  contact:
+    name: Florist One
+    url: https://www.floristone.com/api/
+servers:
+- url: https://www.floristone.com/api/rest
+  description: Production
+security:
+- basicAuth: []
+tags:
+- name: Affiliate
+paths:
+  /affiliate/legalagreement:
+    post:
+      tags:
+      - Affiliate
+      summary: Submit affiliate legal agreement
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          $ref: '#/components/responses/Json'
+components:
+  responses:
+    Json:
+      description: JSON response
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic auth with API Key as username and assigned password

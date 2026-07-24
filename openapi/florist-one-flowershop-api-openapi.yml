@@ -1,0 +1,144 @@
+openapi: 3.1.0
+info:
+  title: Florist One REST Affiliate FlowerShop API
+  version: '1.0'
+  description: 'Best-effort OpenAPI 3.1 description of the Florist One REST API, derived
+
+    from the public sample code published by Florist One at
+
+    https://github.com/fhwsolutions/FloristOne_API and the public documentation
+
+    at https://www.floristone.com/api/. All endpoints use HTTP Basic
+
+    authentication with an `API Key` (username) and password issued by Florist
+
+    One. Responses are JSON.
+
+    '
+  contact:
+    name: Florist One
+    url: https://www.floristone.com/api/
+servers:
+- url: https://www.floristone.com/api/rest
+  description: Production
+security:
+- basicAuth: []
+tags:
+- name: FlowerShop
+paths:
+  /flowershop/getproducts:
+    get:
+      tags:
+      - FlowerShop
+      summary: Get flower products by category or product code
+      parameters:
+      - name: category
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: code
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: count
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: start
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          $ref: '#/components/responses/Json'
+  /flowershop/checkdeliverydate:
+    get:
+      tags:
+      - FlowerShop
+      summary: Check available delivery dates for a ZIP code
+      parameters:
+      - name: zipcode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          $ref: '#/components/responses/Json'
+  /flowershop/gettotal:
+    get:
+      tags:
+      - FlowerShop
+      summary: Calculate order total including service charges
+      parameters:
+      - name: products
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: affiliateservicecharge
+        in: query
+        required: false
+        schema:
+          type: number
+      - name: masterservicecharge
+        in: query
+        required: false
+        schema:
+          type: number
+      responses:
+        '200':
+          $ref: '#/components/responses/Json'
+  /flowershop/placeorder:
+    post:
+      tags:
+      - FlowerShop
+      summary: Place a flower order
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          $ref: '#/components/responses/Json'
+  /flowershop/getorderinfo:
+    get:
+      tags:
+      - FlowerShop
+      summary: Get order information by order number
+      parameters:
+      - name: orderno
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/Json'
+components:
+  responses:
+    Json:
+      description: JSON response
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic auth with API Key as username and assigned password
