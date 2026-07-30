@@ -9,7 +9,20 @@ description: >-
   from any common web language including Java, PHP, ASP.NET, JavaScript,
   Node, Python, Perl, Ruby, and ColdFusion.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/florist-one.png
 access: 3rd-Party
 created: '2025-02-24'
 modified: '2026-04-28'
@@ -24,33 +37,72 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/florist-one/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: florist-one:florist-one-api
-    name: Florist One API
-    description: >-
-      Florist One provides a free REST API for searching available flower
-      products, retrieving product details and imagery, placing orders for
-      delivery through the Florist One network, and checking order status.
-      The API is designed for ecommerce, gifting, and concierge integrations
-      that want to offer same-day or next-day flower delivery.
-    humanURL: https://www.floristone.com/api/
-    baseURL: https://www.floristone.com/api/
-    tags:
-      - Delivery
-      - Ecommerce
-      - Florists
-      - Flowers
-      - Gifts
-    properties:
-      - url: https://www.floristone.com/api/
-        type: Documentation
-      - url: https://www.floristone.com/api/technical-information/
-        type: TechnicalInformation
-      - url: https://www.floristone.com/api/how-it-works/
-        type: HowItWorks
-      - url: https://www.floristone.com/api/flowers-api-faq/
-        type: FAQ
-      - url: https://www.floristone.com/api/api-contact/
-        type: Contact
+- aid: florist-one:florist-one-api
+  name: Florist One API
+  description: >-
+    Florist One provides a free REST API for searching available flower products, retrieving product details
+    and imagery, placing orders for delivery through the Florist One network, and checking order status.
+    The API is designed for ecommerce, gifting, and concierge integrations that want to offer same-day
+    or next-day flower delivery.
+  humanURL: https://www.floristone.com/api/
+  baseURL: https://www.floristone.com/api/
+  tags:
+  - Delivery
+  - Ecommerce
+  - Florists
+  - Flowers
+  - Gifts
+  properties:
+  - url: https://www.floristone.com/api/
+    type: Documentation
+  - url: https://www.floristone.com/api/technical-information/
+    type: TechnicalInformation
+  - url: https://www.floristone.com/api/how-it-works/
+    type: HowItWorks
+  - url: https://www.floristone.com/api/flowers-api-faq/
+    type: FAQ
+  - url: https://www.floristone.com/api/api-contact/
+    type: Contact
+- aid: florist-one:florist-one-affiliate-api
+  name: Florist One Affiliate API
+  description: The Affiliate API from Florist One — 1 operation(s) for affiliate.
+  humanURL: https://www.floristone.com/api/
+  baseURL: https://www.floristone.com/api/
+  tags:
+  - Affiliate
+  properties:
+  - type: OpenAPI
+    url: openapi/florist-one-affiliate-api-openapi.yml
+- aid: florist-one:florist-one-flowershop-api
+  name: Florist One FlowerShop API
+  description: The FlowerShop API from Florist One — 5 operation(s) for flowershop.
+  humanURL: https://www.floristone.com/api/
+  baseURL: https://www.floristone.com/api/
+  tags:
+  - FlowerShop
+  properties:
+  - type: OpenAPI
+    url: openapi/florist-one-flowershop-api-openapi.yml
+- aid: florist-one:florist-one-giftbaskets-api
+  name: Florist One GiftBaskets API
+  description: The GiftBaskets API from Florist One — 3 operation(s) for giftbaskets.
+  humanURL: https://www.floristone.com/api/
+  baseURL: https://www.floristone.com/api/
+  tags:
+  - GiftBaskets
+  properties:
+  - type: OpenAPI
+    url: openapi/florist-one-giftbaskets-api-openapi.yml
+- aid: florist-one:florist-one-shoppingcart-api
+  name: Florist One ShoppingCart API
+  description: The ShoppingCart API from Florist One — 1 operation(s) for shoppingcart.
+  humanURL: https://www.floristone.com/api/
+  baseURL: https://www.floristone.com/api/
+  tags:
+  - ShoppingCart
+  properties:
+  - type: OpenAPI
+    url: openapi/florist-one-shoppingcart-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/florist-one-agentic-access.yml
