@@ -1,0 +1,169 @@
+openapi: 3.1.0
+info:
+  title: Florist One REST API
+  version: "1.0"
+  description: |
+    Best-effort OpenAPI 3.1 description of the Florist One REST API, derived
+    from the public sample code published by Florist One at
+    https://github.com/fhwsolutions/FloristOne_API and the public documentation
+    at https://www.floristone.com/api/. All endpoints use HTTP Basic
+    authentication with an `API Key` (username) and password issued by Florist
+    One. Responses are JSON.
+  contact:
+    name: Florist One
+    url: https://www.floristone.com/api/
+servers:
+  - url: https://www.floristone.com/api/rest
+    description: Production
+security:
+  - basicAuth: []
+tags:
+  - name: FlowerShop
+  - name: GiftBaskets
+  - name: ShoppingCart
+  - name: Affiliate
+paths:
+  /flowershop/getproducts:
+    get:
+      tags: [FlowerShop]
+      summary: Get flower products by category or product code
+      parameters:
+        - { name: category, in: query, required: false, schema: { type: string } }
+        - { name: code, in: query, required: false, schema: { type: string } }
+        - { name: count, in: query, required: false, schema: { type: integer } }
+        - { name: start, in: query, required: false, schema: { type: integer } }
+      responses:
+        '200': { $ref: '#/components/responses/Json' }
+  /flowershop/checkdeliverydate:
+    get:
+      tags: [FlowerShop]
+      summary: Check available delivery dates for a ZIP code
+      parameters:
+        - { name: zipcode, in: query, required: true, schema: { type: string } }
+        - { name: date, in: query, required: false, schema: { type: string, format: date } }
+      responses:
+        '200': { $ref: '#/components/responses/Json' }
+  /flowershop/gettotal:
+    get:
+      tags: [FlowerShop]
+      summary: Calculate order total including service charges
+      parameters:
+        - { name: products, in: query, required: true, schema: { type: string } }
+        - { name: affiliateservicecharge, in: query, required: false, schema: { type: number } }
+        - { name: masterservicecharge, in: query, required: false, schema: { type: number } }
+      responses:
+        '200': { $ref: '#/components/responses/Json' }
+  /flowershop/placeorder:
+    post:
+      tags: [FlowerShop]
+      summary: Place a flower order
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200': { $ref: '#/components/responses/Json' }
+  /flowershop/getorderinfo:
+    get:
+      tags: [FlowerShop]
+      summary: Get order information by order number
+      parameters:
+        - { name: orderno, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/Json' }
+  /giftbaskets/getproducts:
+    get:
+      tags: [GiftBaskets]
+      summary: Get gift basket products by category or code
+      parameters:
+        - { name: category, in: query, required: false, schema: { type: string } }
+        - { name: code, in: query, required: false, schema: { type: string } }
+        - { name: count, in: query, required: false, schema: { type: integer } }
+        - { name: start, in: query, required: false, schema: { type: integer } }
+      responses:
+        '200': { $ref: '#/components/responses/Json' }
+  /giftbaskets/gettotal:
+    get:
+      tags: [GiftBaskets]
+      summary: Calculate gift basket order total
+      parameters:
+        - { name: products, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/Json' }
+  /giftbaskets/placeorder:
+    post:
+      tags: [GiftBaskets]
+      summary: Place a gift basket order
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200': { $ref: '#/components/responses/Json' }
+  /shoppingcart:
+    get:
+      tags: [ShoppingCart]
+      summary: Get shopping cart contents by session id
+      parameters:
+        - { name: sessionid, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/Json' }
+    post:
+      tags: [ShoppingCart]
+      summary: Create cart, add to cart, remove from cart, or clear cart
+      description: |
+        Action is determined by the `action` query parameter (e.g. `add`,
+        `remove`, `clear`) or by omitting it when creating a new cart.
+      parameters:
+        - { name: sessionid, in: query, required: true, schema: { type: string } }
+        - { name: productcode, in: query, required: false, schema: { type: string } }
+        - { name: action, in: query, required: false, schema: { type: string, enum: [add, remove, clear] } }
+      requestBody:
+        required: false
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200': { $ref: '#/components/responses/Json' }
+    delete:
+      tags: [ShoppingCart]
+      summary: Destroy shopping cart for a session id
+      parameters:
+        - { name: sessionid, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/Json' }
+  /affiliate/legalagreement:
+    post:
+      tags: [Affiliate]
+      summary: Submit affiliate legal agreement
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200': { $ref: '#/components/responses/Json' }
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic auth with API Key as username and assigned password
+  responses:
+    Json:
+      description: JSON response
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
