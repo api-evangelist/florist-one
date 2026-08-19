@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Florist One REST Affiliate FlowerShop API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FlowerShop",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get flower products by category or product code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.floristone.com/api/rest/flowershop/getproducts",
+            "params": [
+              {
+                "name": "category",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get flower products by category or product code"
+        },
+        {
+          "info": {
+            "name": "Check available delivery dates for a ZIP code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.floristone.com/api/rest/flowershop/checkdeliverydate",
+            "params": [
+              {
+                "name": "zipcode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Check available delivery dates for a ZIP code"
+        },
+        {
+          "info": {
+            "name": "Calculate order total including service charges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.floristone.com/api/rest/flowershop/gettotal",
+            "params": [
+              {
+                "name": "products",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "affiliateservicecharge",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "masterservicecharge",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Calculate order total including service charges"
+        },
+        {
+          "info": {
+            "name": "Place a flower order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.floristone.com/api/rest/flowershop/placeorder",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Place a flower order"
+        },
+        {
+          "info": {
+            "name": "Get order information by order number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.floristone.com/api/rest/flowershop/getorderinfo",
+            "params": [
+              {
+                "name": "orderno",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get order information by order number"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

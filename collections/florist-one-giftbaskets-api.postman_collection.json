@@ -1,0 +1,359 @@
+{
+  "item": [
+    {
+      "id": "d6a24fc8-2233-4577-9dd1-1b5608cdb985",
+      "name": "GiftBaskets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "acae77d5-7132-4535-bfc7-a05ca75bfbff",
+          "name": "Get gift basket products by category or code",
+          "request": {
+            "name": "Get gift basket products by category or code",
+            "description": {},
+            "url": {
+              "path": [
+                "giftbaskets",
+                "getproducts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "code",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d69a95e-11c1-4359-bfbd-2c0af1d35749",
+              "name": "JSON response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "giftbaskets",
+                    "getproducts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": false,\n  \"key_1\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53b46d14-fc42-4983-93e4-d1efd80afddb",
+          "name": "Calculate gift basket order total",
+          "request": {
+            "name": "Calculate gift basket order total",
+            "description": {},
+            "url": {
+              "path": [
+                "giftbaskets",
+                "gettotal"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "products",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f8389ad7-728c-49f5-b5bd-073daa312a20",
+              "name": "JSON response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "giftbaskets",
+                    "gettotal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "products",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": false,\n  \"key_1\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba761f72-6ecd-446f-a51c-6ca0999ca4bd",
+          "name": "Place a gift basket order",
+          "request": {
+            "name": "Place a gift basket order",
+            "description": {},
+            "url": {
+              "path": [
+                "giftbaskets",
+                "placeorder"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "8012.595614014728"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_1",
+                  "value": "2029"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "abc7e2c2-f765-4ea0-a783-f53e8cc44c51",
+              "name": "JSON response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "giftbaskets",
+                    "placeorder"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "key_0",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_1",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": false,\n  \"key_1\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.floristone.com/api/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "addd32cd-7684-4093-a88b-caed4c279d6f",
+    "name": "Florist One REST Affiliate GiftBaskets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Best-effort OpenAPI 3.1 description of the Florist One REST API, derived\nfrom the public sample code published by Florist One at\nhttps://github.com/fhwsolutions/FloristOne_API and the public documentation\nat https://www.floristone.com/api/. All endpoints use HTTP Basic\nauthentication with an `API Key` (username) and password issued by Florist\nOne. Responses are JSON.\n\n\nContact Support:\n Name: Florist One",
+      "type": "text/plain"
+    }
+  }
+}

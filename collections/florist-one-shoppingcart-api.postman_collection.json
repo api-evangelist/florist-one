@@ -1,0 +1,350 @@
+{
+  "item": [
+    {
+      "id": "16c673db-cb82-4156-a34e-f5a3fc93f654",
+      "name": "ShoppingCart",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b6722937-60a6-4601-b830-9cacce4f8766",
+          "name": "Get shopping cart contents by session id",
+          "request": {
+            "name": "Get shopping cart contents by session id",
+            "description": {},
+            "url": {
+              "path": [
+                "shoppingcart"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sessionid",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28789bc5-0d28-4831-98cd-06888b326736",
+              "name": "JSON response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shoppingcart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sessionid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 7084.535006259678\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80926db9-9d60-448c-ab43-fa4d1d1fef1b",
+          "name": "Create cart, add to cart, remove from cart, or clear cart",
+          "request": {
+            "name": "Create cart, add to cart, remove from cart, or clear cart",
+            "description": {
+              "content": "Action is determined by the `action` query parameter (e.g. `add`,\n`remove`, `clear`) or by omitting it when creating a new cart.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shoppingcart"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sessionid",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "productcode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "action",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "4840.847145734336"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4676dc79-8c48-4160-86a1-3d915b0eaf56",
+              "name": "JSON response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shoppingcart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sessionid",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "productcode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "key_0",
+                      "value": "7084.535006259678"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 7084.535006259678\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb285530-dee0-4b2c-a2e8-a914953cb577",
+          "name": "Destroy shopping cart for a session id",
+          "request": {
+            "name": "Destroy shopping cart for a session id",
+            "description": {},
+            "url": {
+              "path": [
+                "shoppingcart"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sessionid",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a026f938-5f5b-43ab-a5b7-247b26d9d2bc",
+              "name": "JSON response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shoppingcart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sessionid",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 7084.535006259678\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.floristone.com/api/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "51dc9c0f-d6eb-4ca9-a555-ab75f7e6caa2",
+    "name": "Florist One REST Affiliate ShoppingCart API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Best-effort OpenAPI 3.1 description of the Florist One REST API, derived\nfrom the public sample code published by Florist One at\nhttps://github.com/fhwsolutions/FloristOne_API and the public documentation\nat https://www.floristone.com/api/. All endpoints use HTTP Basic\nauthentication with an `API Key` (username) and password issued by Florist\nOne. Responses are JSON.\n\n\nContact Support:\n Name: Florist One",
+      "type": "text/plain"
+    }
+  }
+}

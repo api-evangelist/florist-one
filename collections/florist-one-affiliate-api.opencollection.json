@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Florist One REST Affiliate API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Affiliate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit affiliate legal agreement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.floristone.com/api/rest/affiliate/legalagreement",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Submit affiliate legal agreement"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Florist One REST Affiliate GiftBaskets API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GiftBaskets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get gift basket products by category or code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.floristone.com/api/rest/giftbaskets/getproducts",
+            "params": [
+              {
+                "name": "category",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get gift basket products by category or code"
+        },
+        {
+          "info": {
+            "name": "Calculate gift basket order total",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.floristone.com/api/rest/giftbaskets/gettotal",
+            "params": [
+              {
+                "name": "products",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Calculate gift basket order total"
+        },
+        {
+          "info": {
+            "name": "Place a gift basket order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.floristone.com/api/rest/giftbaskets/placeorder",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Place a gift basket order"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
