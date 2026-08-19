@@ -35,7 +35,7 @@ tags:
   - Gifts
 url: >-
   https://raw.githubusercontent.com/api-evangelist/florist-one/refs/heads/main/apis.yml
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: florist-one:florist-one-api
   name: Florist One API
