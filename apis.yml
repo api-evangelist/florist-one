@@ -29,6 +29,12 @@ modified: '2026-04-28'
 position: Consumer
 tags:
   - Delivery
+  - E-Commerce
+  - Florists
+  - Flowers
+  - Gifts
+tags_raw:
+  - Delivery
   - Ecommerce
   - Florists
   - Flowers
@@ -47,6 +53,12 @@ apis:
   humanURL: https://www.floristone.com/api/
   baseURL: https://www.floristone.com/api/
   tags:
+  - Delivery
+  - E-Commerce
+  - Florists
+  - Flowers
+  - Gifts
+  tags_raw:
   - Delivery
   - Ecommerce
   - Florists
@@ -69,6 +81,8 @@ apis:
   humanURL: https://www.floristone.com/api/
   baseURL: https://www.floristone.com/api/
   tags:
+  - Affiliates
+  tags_raw:
   - Affiliate
   properties:
   - type: OpenAPI
@@ -99,6 +113,8 @@ apis:
   humanURL: https://www.floristone.com/api/
   baseURL: https://www.floristone.com/api/
   tags:
+  - Shopping Cart
+  tags_raw:
   - ShoppingCart
   properties:
   - type: OpenAPI
