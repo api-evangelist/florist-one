@@ -124,7 +124,7 @@ apis:
   humanURL: https://www.floristone.com/api/
   baseURL: https://www.floristone.com/api/
   tags:
-  - Shopping Cart
+  - ShoppingCart
   tags_raw:
   - ShoppingCart
   properties:
