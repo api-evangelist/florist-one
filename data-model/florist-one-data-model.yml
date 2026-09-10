@@ -1,0 +1,112 @@
+generated: '2026-09-10'
+method: derived
+source: >-
+  openapi/_original/florist-one-openapi.yml and the response field names read from
+  Florist One's own published sample code at
+  https://github.com/fhwsolutions/FloristOne_API (php/flowershop/getorderinfo-single.php,
+  php/flowershop/getproducts-category.php, php/flowershop/gettotal.php,
+  php/flowershop/placeorder.php)
+description: >-
+  Entity graph for the Florist One REST API. The OpenAPI in this repo models every
+  response as a free-form JSON object, so no $ref graph exists to walk. The entities and
+  fields below were instead read out of the response and request objects that Florist
+  One's own sample code constructs and dereferences by name — real field names from the
+  provider's code, not invented ones.
+field_casing: UPPERCASE on responses; lowercase on request payloads
+entities:
+  - name: Product
+    description: A flower arrangement or gift basket offered for sale.
+    identifier: CODE
+    id_format: 'Florist One SKU, e.g. F1-509'
+    fields: [CODE, NAME, DESCRIPTION, PRICE, SMALL, THUMBNAIL, IMAGE]
+    source: GET /flowershop/getproducts, GET /giftbaskets/getproducts
+    note: >-
+      Returned inside a PRODUCTS array. SMALL, THUMBNAIL and IMAGE are absolute image URLs
+      the integrator renders directly.
+  - name: Category
+    description: A grouping of products, addressed by an opaque short code.
+    identifier: category
+    id_format: 'short lowercase code, e.g. fx'
+    fields: [category]
+    source: query parameter on both getproducts operations
+    note: >-
+      No operation lists the available categories. The category vocabulary is not published
+      on the open web — an integrator must be told the codes.
+  - name: Cart
+    description: A server-side shopping cart holding products before checkout.
+    identifier: sessionid
+    id_format: client-chosen opaque string, no documented format or expiry
+    fields: [sessionid, productcode, action]
+    source: GET/POST/DELETE /shoppingcart
+  - name: Customer
+    description: The buyer placing and paying for the order.
+    fields: [name, address1, address2, city, state, zipcode, country, phone, email, ip]
+    source: customer field of POST /flowershop/placeorder
+    note: >-
+      `ip` is the buyer's IP address, passed optionally for Florist One's Enhanced Fraud
+      Detection (API Agreement section 4.2.5). Personal data — handled under
+      https://www.floristone.com/privacy/.
+  - name: Recipient
+    description: The person the flowers are delivered to. Distinct from the Customer.
+    fields: [name, institution, address1, address2, city, state, zipcode, country, phone]
+    source: recipient field of each product on placeorder; RECIPIENT on getorderinfo items
+    note: >-
+      `institution` records whether the delivery address is a hospital, funeral home or
+      business — the API Agreement confirms Florist One passes it on to the local florist.
+  - name: OrderItem
+    description: One product within an order, with its own recipient and delivery date.
+    fields: [CODE, NAME, DESCRIPTION, PRICE, THUMBNAIL, IMAGE, RECIPIENT, CARDMSG, DELIVERYDATE, INSTRUCTIONS]
+    source: ITEMS array of GET /flowershop/getorderinfo
+    note: >-
+      Each item carries its own recipient and delivery date, so one order can fan out to
+      several addresses on several days.
+  - name: Order
+    description: A placed flower or gift basket order.
+    identifier: ORDERNO
+    id_format: 'numeric, e.g. 536180551'
+    fields: [ORDERNO, CUSTOMER, ITEMS, SUBTOTAL, TAX, SERVICECHARGE, DISCOUNT, TOTAL]
+    source: GET /flowershop/getorderinfo, POST /flowershop/placeorder
+  - name: OrderTotal
+    description: A priced but unplaced basket, returned by the pricing call.
+    fields: [ORDERNO, SUBTOTAL, ORDERTOTAL]
+    source: GET /flowershop/gettotal, GET /giftbaskets/gettotal
+    note: >-
+      gettotal already returns an ORDERNO before any order is placed, which suggests the
+      pricing call reserves an order number. The documentation does not say whether that
+      number is durable, reusable, or the same one placeorder returns.
+  - name: PaymentToken
+    description: The payment credential passed to Florist One at order placement.
+    fields: [type, ccnum, cvv2, expmonth, expyear]
+    source: ccinfo field of POST /flowershop/placeorder
+    note: >-
+      CONTRADICTION ON THE PUBLIC SURFACE. https://www.floristone.com/api/how-it-works/
+      states the integrator tokenizes with Authorize.Net or Stripe and passes Florist One
+      only a token, so "Florist One never sees payment information". The published sample
+      php/flowershop/placeorder.php (2017) instead posts raw ccnum and cvv2. The field list
+      above is from the sample code; the prose describes the intended model. An integrator
+      must confirm which applies before sending anything.
+  - name: DeliveryDate
+    description: An available delivery date for a destination ZIP code.
+    fields: [zipcode, date]
+    source: GET /flowershop/checkdeliverydate
+    note: Florist One delivers every day except Sundays and holidays, per the how-it-works page.
+  - name: LegalAgreement
+    description: The affiliate legal agreement text, retrievable for display at signup.
+    fields: [content]
+    source: POST /affiliate/legalagreement
+relationships:
+  - {from: Order, to: Customer, type: has_one, via: CUSTOMER}
+  - {from: Order, to: OrderItem, type: has_many, via: ITEMS}
+  - {from: OrderItem, to: Product, type: belongs_to, via: CODE}
+  - {from: OrderItem, to: Recipient, type: has_one, via: RECIPIENT}
+  - {from: Order, to: PaymentToken, type: has_one, via: ccinfo}
+  - {from: Cart, to: Product, type: has_many, via: productcode}
+  - {from: Product, to: Category, type: belongs_to, via: category}
+  - {from: OrderTotal, to: Product, type: has_many, via: products}
+  - {from: DeliveryDate, to: Recipient, type: belongs_to, via: zipcode}
+gaps:
+  - >-
+      No response schema is declared in any spec; every operation returns a free-form
+      object with additionalProperties true.
+  - No enumeration operation exists for categories, states, countries, or florists.
+  - Order status values are not published; getorderinfo's fields are known but its status vocabulary is not.

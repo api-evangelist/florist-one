@@ -1,0 +1,90 @@
+generated: '2026-09-10'
+method: searched
+source: https://wordpress.org/plugins/flower-delivery-by-florist-one/#developers
+scope: wordpress-plugin
+api_changelog_exists: false
+description: >-
+  SCOPE WARNING, READ BEFORE USING. Florist One publishes NO changelog for its REST API —
+  no dated release notes, no version history, no "what's new" page anywhere on
+  https://www.floristone.com/api/. What it does publish is a dated changelog for its
+  first-party WordPress plugin, "Flower Delivery by Florist One", on wordpress.org. That
+  changelog is recorded here because it is the only dated release history Florist One
+  publishes and it occasionally reveals API-side changes, but it documents the plugin, not
+  the API. No `ChangeLog` pointer is wired in apis.yml for exactly that reason: crediting
+  it would assert API change transparency Florist One does not offer.
+scheme: semver-ish
+current_version: 3.9.1
+current_version_date: '2024-12-02'
+first_release: '2016-08-18'
+cadence_note: >-
+  Last release 2024-12-02 — roughly 21 months before this probe — and it was a single XSS
+  fix. Tested only up to WordPress 6.5.10.
+entries:
+  - version: 3.9.1
+    date: '2024-12-02'
+    breaking: false
+    highlights: [Fix for XSS]
+  - version: '3.8'
+    date: null
+    breaking: false
+    highlights:
+      - Tested on WordPress 6.5.4 and PHP 8.3
+      - Function to check if checkout data exists and add it to the session
+      - Removed facility_id from checkout data
+      - Fix for cart total not displaying correctly
+  - version: '3.7'
+    date: null
+    breaking: false
+    highlights:
+      - Tested on WordPress 6.2 and PHP 8.1
+      - Consolidated all API calls into one PHP cURL function
+      - Used cURL options to improve API response time
+      - Fix for facility ID not saving because of spaces in the API URL
+      - Display flowers after payment with the order number, removed the order number from the URL
+  - version: '3.6'
+    date: null
+    breaking: false
+    highlights: ['Important fix for servers upgraded to OpenSSL 3.0']
+  - version: 3.5.7
+    date: null
+    breaking: false
+    highlights:
+      - Added terms and conditions and privacy policy to the readme
+      - Internationalization function fixed, text_domain replaced with flower-delivery-by-florist-one
+  - version: 3.1.0
+    date: null
+    breaking: false
+    highlights:
+      - 'New API parameter to add country: &cou='
+      - 'New API parameter to select surface: &show=flowers or &show=trees'
+    note: >-
+      One of the few plugin entries that names API-side parameters — `cou` and `show` are
+      not described anywhere in Florist One's public API documentation.
+  - version: 3.0.0
+    date: null
+    breaking: false
+    highlights:
+      - New responsive framework and one-page checkout
+      - Plant-a-tree option on all products
+      - Compatibility with WordPress 5.9 and PHP 8
+  - version: 2.5.0
+    date: null
+    breaking: false
+    highlights:
+      - Allows international orders and additional billing countries beyond US and CA
+      - Conditional postal code and state fields based on country
+  - version: 2.2.1
+    date: null
+    breaking: true
+    highlights: ['Important payment key change']
+  - version: 1.5.0
+    date: null
+    breaking: true
+    highlights:
+      - >-
+        Critical update for non-SSL payment form users — customers could not check out
+        after 2017-05-31 without upgrading to this version.
+date_note: >-
+  wordpress.org exposes a precise date only for the current release. Earlier entries carry
+  version and content but no date, so `date: null` records "not published" rather than a
+  guess.

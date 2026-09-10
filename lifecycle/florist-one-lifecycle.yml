@@ -1,0 +1,72 @@
+generated: '2026-09-10'
+method: searched
+source: >-
+  https://www.floristone.com/api/print_api_legal/,
+  https://www.floristone.com/api/,
+  https://www.floristone.com/api/flowers-api-faq/,
+  DNS probe of status.floristone.com and trust.floristone.com
+description: >-
+  Florist One runs the API's lifecycle contractually rather than technically. There is no
+  version in the URL, no changelog for the API itself, and no status page — but the API
+  Agreement does bind Florist One to a written change-notice period, which is a real and
+  unusually explicit commitment for a provider of this size.
+versioning:
+  scheme: none
+  current: null
+  in_path: false
+  header: null
+  docs: https://www.floristone.com/api/
+  note: >-
+    The base path is https://www.floristone.com/api/rest with no version segment. The API
+    Agreement defines "API" as Florist One's specification "as may be updated by Provider
+    from time to time", pointing at https://www.floristone.com/api/ as the current version
+    — the live docs page is the version.
+deprecation:
+  policy_url: https://www.floristone.com/api/print_api_legal/
+  policy_type: contractual-change-notice
+  notice_period_days: 30
+  sunset_header: false
+  deprecation_header: false
+  quote: >-
+    "If Provider changes any of the Licensed Materials and/or Ecommerce Services, Company
+    shall have thirty (30) days after written notice to conform its practices to reflect
+    the change, except for changes required by law, payment processors and/or prudent
+    security practices, which may have a shorter period, or if such changes are material,
+    to terminate this Agreement." (API Agreement, section 2.2)
+  note: >-
+    This is a contract clause in the API Agreement, not a versioned deprecation policy on
+    a developer page, and it carries no RFC 8594 Sunset or Deprecation header support. It
+    is nevertheless a published, binding, dated change-notice commitment, which is what is
+    recorded here.
+suspension:
+  policy_url: https://www.floristone.com/api/print_api_legal/
+  note: >-
+    Section 5.2.2 — Florist One may suspend or terminate API access for material breach,
+    illegal or fraudulent activity, or termination of a subcontractor's services. Either
+    party may terminate for material breach uncured 30 days after written notice.
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    No SLA or uptime commitment is published. The API Agreement states Florist One "has no
+    obligation to offer any maintenance, technical or other support" for the Licensed
+    Materials (section 2.2), and commits only to "reasonable efforts" for customer service
+    to the integrator's end customers (section 2.3).
+status_page: null
+status_page_evidence:
+  - {host: status.floristone.com, result: does not resolve}
+  - {host: trust.floristone.com, result: does not resolve}
+  - {url: 'https://www.floristone.com/api/', result: no status link on the developer surface}
+support:
+  url: https://www.floristone.com/api/api-contact/
+  note: Contact form. No developer community, forum, or ticketing system is published.
+changelog:
+  api_changelog: null
+  note: >-
+    Florist One publishes no changelog for the REST API. It does publish a dated changelog
+    for its first-party WordPress plugin — see changelog/florist-one-changelog.yml, and
+    read the scope note there before treating it as an API changelog.
+deprecated_operations: []
+deprecated_operations_note: >-
+  No operation in openapi/ carries `deprecated: true`. Nothing in the published surface
+  marks an operation as retiring.

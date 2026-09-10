@@ -1,0 +1,70 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Florist One ShoppingCart API
+  version: 1.0.0
+x-generated: '2026-09-10'
+x-method: generated
+x-source: >-
+  Derived from Florist One's own published sample code at
+  https://github.com/fhwsolutions/FloristOne_API, the public documentation at
+  https://www.floristone.com/api/how-it-works/ and
+  https://www.floristone.com/api/flowers-api-faq/, the API Agreement at
+  https://www.floristone.com/api/print_api_legal/, and one live probe of
+  https://www.floristone.com/api/rest on 2026-09-10. Applies our findings without mutating
+  the harvested description.
+extends: openapi/florist-one-shoppingcart-api-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-profile: https://apis.io/provider/florist-one/
+      x-contract-provenance: >-
+        Florist One publishes no OpenAPI. This description was written by API Evangelist
+        from the provider's public PHP and ColdFusion sample code and its public
+        documentation. It is a third-party description, not a provider artifact.
+      x-docs-gated: >-
+        The endpoint-level documentation at
+        https://www.floristone.com/api/technical-information/ is behind an API Key and
+        password login, so parameter semantics beyond the names below are unverified.
+  - target: $.servers
+    update:
+      x-base-url-note: >-
+        The callable base is https://www.floristone.com/api/rest. The /api/ path is the
+        marketing and documentation site and is not an API host.
+  - target: $.components.securitySchemes.basicAuth
+    update:
+      x-wire-format: 'Authorization: <base64(apikey:password)>'
+      x-rfc7617-conformant: false
+      x-wire-format-note: >-
+        Every published Florist One sample omits the "Basic " scheme prefix required by
+        RFC 7617. See authentication/florist-one-authentication.yml.
+      x-no-www-authenticate: >-
+        An unauthenticated request returns 403 with no WWW-Authenticate challenge and a
+        text/html IIS error page.
+  - target: $.paths
+    update:
+      x-error-envelope: >-
+        No error responses are declared by the provider and none are documented. The one
+        observed failure (403, unauthenticated) returns text/html, not JSON and not
+        application/problem+json. See errors/florist-one-problem-types.yml.
+      x-response-field-casing: >-
+        Response keys are UPPERCASE (PRODUCTS, CODE, PRICE, ORDERNO, SUBTOTAL, ITEMS,
+        RECIPIENT). A case-sensitive client written against lowercase keys will fail.
+      x-rate-limit-signal: >-
+        None. No RateLimit-*, X-RateLimit-* or Retry-After header is emitted. See
+        rate-limits/florist-one-rate-limits.yml.
+      x-idempotency: >-
+        Not supported anywhere on this API. See conventions/florist-one-conventions.yml.
+  - target: $.paths['/shoppingcart']
+    update:
+      x-session-model: >-
+        The cart is server-side and keyed on a client-chosen sessionid query parameter with
+        no documented format, entropy requirement, or expiry. A guessable sessionid is a
+        cart another party can read or mutate.
+      x-reversible: >-
+        Cart mutation is fully reversible — remove, clear and DELETE all exist — but the
+        cart is pre-transaction state, so this does not offset the absence of order reversal.
+      x-method-discrepancy: >-
+        Florist One's own sample php/shoppingcart/addtocart.php issues the add action with
+        HTTP PUT (CURLOPT_PUT) against /shoppingcart?action=add, while this description
+        models cart mutation as POST. The provider's public material is inconsistent on the
+        verb and no authoritative reference is published to settle it.

@@ -3,11 +3,21 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: Florist One
 providerId: florist-one
+generated: '2026-09-10'
+method: probed
+source: >-
+  live probe of https://www.floristone.com/api/rest/flowershop/getproducts (2026-09-10),
+  https://www.floristone.com/api/flowers-api-faq/,
+  https://www.floristone.com/api/print_api_legal/
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+modified: '2026-09-10'
+supersedes: >-
+  REPLACED A SCAFFOLD. The prior version of this file (method: generated, dated 2026-05-04)
+  declared X-RateLimit-Limit / X-RateLimit-Remaining / X-RateLimit-Reset / RateLimit-Policy
+  headers, a 429 on exhaustion, and five per-tier limits across free, professional and
+  enterprise tiers. Florist One publishes none of that and returns none of those headers.
+  All of it has been removed.
+limit_count: 0
 tags:
   - Delivery
   - Ecommerce
@@ -15,78 +25,56 @@ tags:
   - Flowers
   - Gifts
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Florist One API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Florist One API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Florist One API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Florist One API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Florist One API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Florist One API
+description: >-
+  Florist One publishes no rate limit for its REST API and emits no rate-limit signal on
+  the wire. An agent or client has no way to learn its budget in advance, and no way to
+  learn it has been throttled other than by a request failing. This is an honest zero, not
+  an unmeasured field.
+headers: {}
+headers_observed: []
+headers_probe:
+  fetched: '2026-09-10'
+  url: https://www.floristone.com/api/rest/flowershop/getproducts?category=fx&count=2&start=1
+  http_status: 403
+  response_headers_returned:
+    - date
+    - content-type
+    - allow
+    - server
+    - x-time-in-parse
+    - x-time-in-ontaffyrequest
+    - x-time-in-resource
+    - x-time-in-serialize
+    - x-time-in-taffy
+    - x-powered-by
+  finding: >-
+    No RateLimit-*, X-RateLimit-*, or Retry-After header on the response. The only
+    non-standard headers are Taffy framework timing counters, which identify the
+    ColdFusion REST stack behind Microsoft-IIS/10.0 but say nothing about quota.
+  caveat: >-
+    This was an unauthenticated request that returned 403 before reaching application
+    logic. An authenticated response could in principle carry headers this probe cannot
+    see; nothing in the public documentation suggests it does, and the technical
+    documentation that would settle it is behind the API-key login.
+responseCodes: {}
+responseCodes_note: >-
+  No status code for throttling or quota exhaustion is documented. 403 is confirmed as the
+  unauthorized response; 429 was never observed and is never mentioned.
+limits: []
+limits_note: >-
+  Zero published limits. The FAQ, the how-it-works page and the API Agreement contain no
+  request ceiling, burst allowance, concurrency cap or fair-use clause of any kind. The
+  API Agreement's only volume-adjacent language forbids uses that would result in
+  "excessive non-acceptance, non-delivery, refunds and/or chargebacks" — a commercial abuse
+  clause, not a rate limit.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: No published backoff guidance
+    description: >-
+      Florist One documents no retry or backoff expectation, and its own sample code
+      performs no retry. A client must choose its own policy blind — and must do so
+      carefully, because the write operations have no idempotency key, so a naive retry of
+      a placeorder call risks a duplicate real-world flower delivery. See
+      conventions/florist-one-conventions.yml.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

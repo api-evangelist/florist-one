@@ -1,0 +1,50 @@
+generated: '2026-09-10'
+method: probed
+source: >-
+  live probe of https://www.floristone.com/api/rest/flowershop/getproducts (2026-09-10),
+  openapi/_original/florist-one-openapi.yml,
+  https://github.com/fhwsolutions/FloristOne_API
+format: none
+rfc9457: false
+description: >-
+  Florist One publishes no error reference. The derived OpenAPI in this repo declares only
+  '200' responses for every operation, so nothing can be derived from the spec's 4xx/5xx
+  block — there is no such block. What follows is one directly observed error response
+  plus the error handling Florist One's own sample code performs, recorded so the absence
+  is measurable rather than assumed.
+problems:
+  - status: 403
+    title: Forbidden
+    media_type: text/html
+    body_shape: >-
+      Stock Microsoft IIS error page — "403 - Forbidden: Access is denied. You do not have
+      permission to view this directory or page using the credentials that you supplied."
+      No machine-readable code, type URI, or JSON body.
+    trigger: request without an Authorization header
+    source_operation: probed https://www.floristone.com/api/rest/flowershop/getproducts?category=fx&count=2&start=1
+    evidence:
+      fetched: '2026-09-10'
+      http_status: 403
+      content_type: text/html
+      response_headers: [allow, server, x-powered-by, x-time-in-parse, x-time-in-taffy, x-time-in-resource, x-time-in-serialize, x-time-in-ontaffyrequest]
+    note: >-
+      An agent cannot distinguish "no credential", "wrong credential", "key revoked" or
+      "endpoint not permitted for this key" from this response. All four collapse to the
+      same untyped HTML page.
+declared_in_spec: []
+gaps:
+  - >-
+    No operation in openapi/ declares any 4xx or 5xx response. The success path is the
+    only path described.
+  - >-
+    No error code registry, error reference page, or decline-code list is published on
+    the open web. The technical documentation that might carry one is behind the API-key
+    login at https://www.floristone.com/api/technical-information/.
+  - >-
+    Florist One's own PHP samples do no status inspection at all — they test only whether
+    curl_exec() returned false and print "Something went wrong!!" otherwise, so the
+    reference implementation the provider ships models no error handling.
+  - >-
+    Order placement failures (declined card, undeliverable ZIP, unavailable delivery date,
+    product out of stock) have no published representation. These are the errors an agent
+    placing a real order most needs to recognise.

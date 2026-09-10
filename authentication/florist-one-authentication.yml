@@ -1,13 +1,79 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/florist-one-openapi.yml
+generated: '2026-09-10'
+method: searched
+source: >-
+  https://www.floristone.com/api/technical-information/,
+  https://www.floristone.com/api/print_api_legal/,
+  https://github.com/fhwsolutions/FloristOne_API (Florist One's published sample code),
+  live probe of https://www.floristone.com/api/rest/flowershop/getproducts,
+  openapi/_original/florist-one-openapi.yml
+docs: https://www.floristone.com/api/technical-information/
+docs_note: >-
+  The auth documentation page is itself gated — https://www.floristone.com/api/technical-information/
+  returns 200 but renders a login form asking for an API Key and Password. The credential
+  model below was reconstructed from Florist One's own public sample code and one live
+  probe, not from a published auth reference.
 summary:
   types:
-  - http
+    - http
+  api_key_in: []
+  oauth2_flows: []
+  credential_issuance: manual, after signup at https://www.floristone.com/api/api-signup/
 schemes:
-- name: basicAuth
-  type: http
-  scheme: basic
-  description: HTTP Basic auth with API Key as username and assigned password
-  sources:
-  - openapi/florist-one-openapi.yml
+  - name: basicAuth
+    type: http
+    scheme: basic
+    description: HTTP Basic auth with API Key as username and assigned password
+    sources:
+      - openapi/_original/florist-one-openapi.yml
+      - openapi/florist-one-flowershop-api-openapi.yml
+      - openapi/florist-one-giftbaskets-api-openapi.yml
+      - openapi/florist-one-shoppingcart-api-openapi.yml
+      - openapi/florist-one-affiliate-api-openapi.yml
+credential:
+  username: API Key (a numeric key issued by Florist One)
+  password: assigned password
+  issuance: >-
+    Issued on signup at https://www.floristone.com/api/api-signup/. Accepting the API
+    Agreement is a condition of use — "By clicking the Accept button for this Agreement
+    and/or using an API key issued by Provider, you confirm your acceptance".
+  rotation: not documented
+  revocation: >-
+    Florist One may suspend or terminate API access for material breach, illegal or
+    fraudulent activity, or termination of a subcontractor's services (API Agreement,
+    section 5.2.2). No self-service key rotation or revocation is documented.
+  multi_key_requirement: >-
+    An integrator selling into both the United States and Canada must hold TWO API keys and
+    swap them by order destination, because orders to the US are charged in USD and orders
+    to Canada in CAD. Published in https://www.floristone.com/api/flowers-api-faq/.
+wire_format:
+  header: Authorization
+  observed_form: 'Authorization: <base64(apikey:password)>'
+  rfc7617_conformant: false
+  deviation_note: >-
+    Every published sample — php/flowershop/placeorder.php, php/shoppingcart/*.php,
+    php/affiliate/legalagreement.php and the ColdFusion equivalents — builds the header as
+    base64_encode("{$username}:{$password}") and sends it with NO `Basic ` scheme prefix.
+    RFC 7617 requires the scheme token. Whether the server accepts the RFC form as well is
+    not documented anywhere public, so an integrator using a standard HTTP client's
+    basic-auth helper cannot tell from the documentation whether it will work.
+  transport: HTTPS only
+unauthenticated_behavior:
+  fetched: '2026-09-10'
+  url: https://www.floristone.com/api/rest/flowershop/getproducts?category=fx&count=2&start=1
+  http_status: 403
+  content_type: text/html
+  body: >-
+    Stock Microsoft IIS error page reading "403 - Forbidden: Access is denied."
+  note: >-
+    No WWW-Authenticate challenge is returned, which is a further deviation from HTTP Basic
+    — a client is given no machine-readable indication of which scheme or realm to use. The
+    error is untyped HTML. See errors/florist-one-problem-types.yml.
+not_supported:
+  oauth2: true
+  openid_connect: true
+  api_key_header: true
+  mutual_tls: true
+  scopes: >-
+    No scope, permission, or role model exists. One credential grants the whole surface,
+    including order placement. There is no read-only key, which means an agent given a key
+    to browse products is also holding a key that can charge a card.

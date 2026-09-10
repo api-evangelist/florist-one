@@ -1,0 +1,87 @@
+generated: '2026-09-10'
+method: probed
+source: live HTTP probes of every host this record knows
+description: >-
+  Probe of the /.well-known/ discovery surface plus the APIs.json root paths on every
+  host in the Florist One record. Every named path was requested individually; nothing
+  was fetched with a glob. NO document was served on any host, so no WellKnown or
+  SecurityTxt pointer is wired in apis.yml — this file records a measured absence.
+host_set_rationale: >-
+  www.floristone.com is the registrable domain's canonical host, the docs/portal host
+  (https://www.floristone.com/api/) and the API host (https://www.floristone.com/api/rest)
+  all at once — Florist One runs one host. The apex floristone.com is a 302 redirect to
+  www. No OpenAPI servers[] entry, baseURL or discovery document names any other host.
+hit_count: 0
+path_echo_control: passed
+hosts:
+  - host: https://www.floristone.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /.well-known/apis.json
+        status: 404
+      - path: /apis.yml
+        status: 404
+      - path: /.well-known/florist-one-negative-control-7f3ab91c.json
+        status: 404
+        note: >-
+          Negative control. A 404 here is the correct result and confirms this host does
+          not echo arbitrary /.well-known/ paths back as documents.
+  - host: https://floristone.com
+    note: >-
+      Apex. Every /.well-known/ and APIs.json path returns 302 to the www host, which is
+      probed above. No document is served from the apex.
+    documents:
+      - path: /.well-known/security.txt
+        status: 302
+      - path: /.well-known/openid-configuration
+        status: 302
+      - path: /.well-known/oauth-authorization-server
+        status: 302
+      - path: /.well-known/oauth-protected-resource
+        status: 302
+      - path: /.well-known/api-catalog
+        status: 302
+      - path: /.well-known/ai-plugin.json
+        status: 302
+      - path: /.well-known/agent-card.json
+        status: 302
+      - path: /.well-known/agent.json
+        status: 302
+      - path: /.well-known/aauth-resource.json
+        status: 302
+      - path: /.well-known/ucp.json
+        status: 302
+      - path: /.well-known/acp.json
+        status: 302
+      - path: /apis.json
+        status: 302
+      - path: /.well-known/apis.json
+        status: 302
+      - path: /apis.yml
+        status: 302
+      - path: /.well-known/florist-one-negative-control-7f3ab91c.json
+        status: 302
+        note: Negative control. Redirect, not a document — no path echo.
+soft_404_note: >-
+  www.floristone.com answers most unknown /api/-prefixed paths with a 404 status and a
+  ~55KB branded HTML 404 page, and unknown root paths with a 175-byte IIS 404. Both are
+  honest 404 status codes; neither is a 200 SPA shell. No path returned 2xx.

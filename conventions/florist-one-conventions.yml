@@ -1,0 +1,153 @@
+generated: '2026-09-10'
+method: searched
+source: >-
+  https://www.floristone.com/api/how-it-works/,
+  https://www.floristone.com/api/flowers-api-faq/,
+  https://www.floristone.com/api/print_api_legal/,
+  https://github.com/fhwsolutions/FloristOne_API (Florist One's published sample code),
+  live probe of https://www.floristone.com/api/rest/flowershop/getproducts,
+  openapi/_original/florist-one-openapi.yml
+description: >-
+  Cross-cutting request/response semantics for the Florist One REST API, read from the
+  public documentation, Florist One's own sample code, and one live unauthenticated probe.
+  Full parameter-level documentation sits behind an API key, so anything not stated here
+  was not published in the open.
+base_url: https://www.floristone.com/api/rest
+authentication:
+  style: http-basic
+  credential: API Key as username, assigned password as password
+  header: Authorization
+  deviation: >-
+    Every one of Florist One's published PHP and ColdFusion samples sends
+    `Authorization: <base64(apikey:password)>` with NO `Basic ` scheme prefix, which is not
+    RFC 7617 form. An integrator copying the samples produces a non-standard header; an
+    integrator using a standard HTTP client's basic-auth helper produces the RFC form.
+    Which of the two the server accepts is not documented anywhere public.
+  transport: HTTPS only
+  cross_reference: authentication/florist-one-authentication.yml
+idempotency:
+  supported: false
+  coverage: none
+  mechanism: null
+  header: null
+  note: >-
+    No idempotency key, request id, or replay-protection mechanism appears anywhere in the
+    documentation, the sample code, or the derived OpenAPI. This matters more here than on
+    a read-heavy API: POST /flowershop/placeorder and POST /giftbaskets/placeorder both
+    charge a card and dispatch a florist, so a retried or duplicated write produces a
+    second real flower delivery with no way to collapse it.
+reversibility:
+  grade: none
+  applicable: true
+  note: >-
+    The write surface is real (order placement, cart mutation) but the published contract
+    exposes no reversal operation for the consequential half of it. Documented and
+    verified are both unmet — there is neither a reversal path nor a window.
+  write_surfaces:
+    - operation: POST /flowershop/placeorder
+      reversal_operation: null
+      window: null
+      evidence: >-
+        No cancel, void, refund or amend operation exists in openapi/ or in Florist One's
+        sample code. The API Agreement (https://www.floristone.com/api/print_api_legal/,
+        section 4.2.1) states "All credits and refunds by Provider are at Provider's sole
+        discretion" and section 4.2.4 assigns the integrator responsibility for processing
+        credits and refunds to its own customers. Reversal is a commercial conversation
+        with Florist One customer service, not an API call, and no time window is stated.
+    - operation: POST /giftbaskets/placeorder
+      reversal_operation: null
+      window: null
+      evidence: Same as the flower order path; no reversal operation is published.
+    - operation: POST /shoppingcart (add/remove/clear)
+      reversal_operation: POST /shoppingcart?action=remove and ?action=clear, DELETE /shoppingcart
+      window: for the life of the session id
+      evidence: >-
+        openapi/florist-one-shoppingcart-api-openapi.yml and the sample files
+        php/shoppingcart/removefromcart.php, clearcart.php and destroycart.php. Cart
+        mutation is fully reversible, but the cart is pre-transaction state — nothing has
+        been paid for or dispatched yet — so this does not cover the consequential writes.
+pagination:
+  style: offset
+  parameters:
+    start: 1-based index of the first product to return
+    count: number of products to return
+  applies_to: [GET /flowershop/getproducts, GET /giftbaskets/getproducts]
+  response_fields: []
+  note: >-
+    Parameter names verified in php/flowershop/getproducts-category.php. No total-count,
+    next-cursor or has-more field is documented, so a client cannot tell when it has
+    reached the end of a category other than by receiving a short page.
+request_format:
+  reads: query string on GET
+  writes: >-
+    form-encoded POST body whose individual fields carry JSON-encoded documents — the
+    `products`, `customer` and `ccinfo` fields of placeorder are each a JSON string inside
+    an application/x-www-form-urlencoded body, not a JSON request body. Verified in
+    php/flowershop/placeorder.php.
+  content_type: application/x-www-form-urlencoded
+response_format:
+  content_type: application/json
+  envelope: bare object, no wrapper
+  field_casing: >-
+    UPPERCASE. Real keys observed in Florist One's own sample code: PRODUCTS, CODE, NAME,
+    DESCRIPTION, PRICE, SMALL, THUMBNAIL, IMAGE, ORDERNO, SUBTOTAL, ORDERTOTAL, TOTAL, TAX,
+    SERVICECHARGE, DISCOUNT, CUSTOMER, ITEMS, RECIPIENT, CARDMSG, DELIVERYDATE,
+    INSTRUCTIONS. This is a ColdFusion struct serialization artifact and is a real
+    integration hazard for case-sensitive clients.
+error_envelope:
+  format: none
+  rfc9457: false
+  observed: >-
+    An unauthenticated GET to /api/rest/flowershop/getproducts returned HTTP 403 with
+    Content-Type text/html and a stock Microsoft IIS "403 - Forbidden: Access is denied."
+    page — an HTML body on an API path. Probed 2026-09-10.
+  cross_reference: errors/florist-one-problem-types.yml
+rate_limit_signaling:
+  headers: []
+  status_on_exhaustion: null
+  note: >-
+    No RateLimit-*, X-RateLimit-* or Retry-After header was returned on the live probe and
+    no limit is published. See rate-limits/florist-one-rate-limits.yml.
+versioning:
+  scheme: none
+  current: null
+  note: >-
+    The base path carries no version segment and no version header is documented. The API
+    Agreement instead handles change contractually: if Florist One changes the API, the
+    integrator has thirty (30) days after written notice to conform, shorter where the
+    change is required by law, a payment processor, or security practice. See
+    lifecycle/florist-one-lifecycle.yml.
+request_tracing:
+  request_id_header: null
+  note: >-
+    No correlation or request-id header is documented. The live 403 response did carry
+    Taffy framework timing headers (x-time-in-parse, x-time-in-taffy, x-time-in-resource,
+    x-time-in-serialize) and Server: Microsoft-IIS/10.0 with X-Powered-By: ASP.NET, which
+    identify the stack but are not usable for tracing a request.
+metadata:
+  supported: false
+field_expansion:
+  supported: false
+dry_run_mode:
+  supported: false
+  note: No sandbox, test mode, or test key prefix is published. Every call is a live call.
+sessions:
+  mechanism: >-
+    The shopping cart is server-side and keyed on a client-chosen `sessionid` query
+    parameter with no documented format, entropy requirement, or expiry. Verified in
+    php/shoppingcart/createshoppingcart.php.
+payments:
+  processors: [Authorize.Net, Stripe]
+  model: >-
+    https://www.floristone.com/api/how-it-works/ states the integrator captures payment
+    details directly to Authorize.Net or Stripe and passes Florist One only a payment
+    token, so Florist One never sees card data. Note the contradiction: the published
+    sample php/flowershop/placeorder.php (last updated 2017) posts a raw `ccinfo` object
+    containing ccnum and cvv2 to the API. The prose describes the current model; the
+    sample code has not been updated to match it.
+cross_references:
+  errors: errors/florist-one-problem-types.yml
+  lifecycle: lifecycle/florist-one-lifecycle.yml
+  authentication: authentication/florist-one-authentication.yml
+  rate_limits: rate-limits/florist-one-rate-limits.yml
+  data_model: data-model/florist-one-data-model.yml

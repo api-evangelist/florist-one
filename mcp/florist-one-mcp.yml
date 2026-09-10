@@ -1,0 +1,68 @@
+generated: '2026-09-10'
+method: derived
+status: candidate
+source: openapi/florist-one-flowershop-api-openapi.yml, openapi/florist-one-giftbaskets-api-openapi.yml, openapi/florist-one-shoppingcart-api-openapi.yml, openapi/florist-one-affiliate-api-openapi.yml
+description: >-
+  CANDIDATE ONLY. Florist One ships no MCP server. This is a tool list API Evangelist
+  derived from the operations described in this repo's OpenAPI, so an agent builder can
+  see the shape a server would take. Nothing here is served by Florist One and no
+  endpoint below is callable as MCP.
+search_evidence:
+  - {checked: 'https://www.floristone.com/api/', result: no MCP or agent surface mentioned}
+  - {checked: 'https://www.floristone.com/api/flowers-api-faq/', result: no MCP mention}
+  - {checked: 'https://www.floristone.com/.well-known/ai-plugin.json', status: 404}
+  - {checked: 'https://github.com/FloristOne', result: 0 public repositories}
+  - {checked: 'npm search floristone', result: 0 packages}
+deployment:
+  mode: none
+  auth: unknown
+  verified: derived
+  note: >-
+    mode is none because no server exists in either shape — there is no remote endpoint an
+    MCP client could POST to, and no stdio package anyone can install. No endpoint URL is
+    recorded because guessing one would read as a verified agent surface.
+server:
+  name: florist-one
+  transport: null
+  url: null
+tools:
+  - name: list_flower_products
+    description: List flower products by category or look one up by product code.
+    source_operation: openapi/florist-one-flowershop-api-openapi.yml#get /flowershop/getproducts
+  - name: check_delivery_date
+    description: Check which delivery dates are available for a destination ZIP code.
+    source_operation: openapi/florist-one-flowershop-api-openapi.yml#get /flowershop/checkdeliverydate
+  - name: get_order_total
+    description: Price a basket of flower products including tax and service charges.
+    source_operation: openapi/florist-one-flowershop-api-openapi.yml#get /flowershop/gettotal
+  - name: place_flower_order
+    description: Place a flower order for delivery. Irreversible — money moves and a florist is dispatched.
+    source_operation: openapi/florist-one-flowershop-api-openapi.yml#post /flowershop/placeorder
+  - name: get_order_info
+    description: Retrieve an order by order number, including recipient, items and totals.
+    source_operation: openapi/florist-one-flowershop-api-openapi.yml#get /flowershop/getorderinfo
+  - name: list_gift_baskets
+    description: List gift basket products by category or code.
+    source_operation: openapi/florist-one-giftbaskets-api-openapi.yml#get /giftbaskets/getproducts
+  - name: get_gift_basket_total
+    description: Price a gift basket order.
+    source_operation: openapi/florist-one-giftbaskets-api-openapi.yml#get /giftbaskets/gettotal
+  - name: place_gift_basket_order
+    description: Place a gift basket order. Irreversible.
+    source_operation: openapi/florist-one-giftbaskets-api-openapi.yml#post /giftbaskets/placeorder
+  - name: get_cart
+    description: Read the contents of a server-side shopping cart by session id.
+    source_operation: openapi/florist-one-shoppingcart-api-openapi.yml#get /shoppingcart
+  - name: modify_cart
+    description: Create a cart, or add, remove or clear items on it.
+    source_operation: openapi/florist-one-shoppingcart-api-openapi.yml#post /shoppingcart
+  - name: destroy_cart
+    description: Destroy a shopping cart for a session id.
+    source_operation: openapi/florist-one-shoppingcart-api-openapi.yml#delete /shoppingcart
+  - name: get_affiliate_legal_agreement
+    description: Retrieve the affiliate legal agreement text for display at signup.
+    source_operation: openapi/florist-one-affiliate-api-openapi.yml#post /affiliate/legalagreement
+input_schema_note: >-
+  The source specs declare no operationId and no response schemas beyond a free-form JSON
+  object, so no tool below can inherit a real inputSchema. Query parameter names are real
+  and verified against Florist One's own sample code; response shapes are not modelled.

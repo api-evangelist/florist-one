@@ -1,0 +1,94 @@
+generated: '2026-09-10'
+method: searched
+source: >-
+  wordpress.org plugin API, registry.npmjs.org, pypi.org, rubygems.org, api.nuget.org,
+  packagist.org, api.github.com, and https://www.floristone.com/api/flowers-api-faq/
+description: >-
+  Florist One publishes no client library in any language package registry. The one
+  first-party, registry-distributed, versioned artifact is a WordPress plugin. The PHP
+  and ColdFusion "code samples" the FAQ advertises are a GitHub repository of raw curl
+  snippets, not an installable package, and the FAQ says the samples themselves are only
+  handed over after API signup.
+sdk_finding: >-
+  NO first-party language SDK exists. No `SDKs` pointer is wired in apis.yml as a result:
+  the WordPress plugin is a turnkey storefront for site owners, not a client library a
+  developer codes against, and crediting it as an SDK would assert a developer artifact
+  Florist One does not ship. Recorded here as an official package, which it genuinely is.
+packages:
+  - language: php
+    registry: wordpress.org
+    kind: wordpress-plugin
+    name: flower-delivery-by-florist-one
+    display_name: Flower Delivery by Florist One
+    url: https://wordpress.org/plugins/flower-delivery-by-florist-one/
+    homepage: https://www.floristone.com/wordpress/
+    install: Install "Flower Delivery by Florist One" from the WordPress plugin directory
+    download: https://downloads.wordpress.org/plugin/flower-delivery-by-florist-one.zip
+    official: true
+    official_evidence: >-
+      Published under the wordpress.org author profile "floristone"
+      (https://profiles.wordpress.org/floristone/) and linked as the official plugin from
+      https://www.floristone.com/wordpress/.
+    version: 3.9.1
+    published: '2024-12-02'
+    first_published: '2016-08-18'
+    requires_wordpress: '4.1'
+    tested_wordpress: '6.5.10'
+    active_installs: 100
+    support: https://wordpress.org/support/plugin/flower-delivery-by-florist-one/
+    note: >-
+      Currency check: last release 2024-12-02, tested only to WordPress 6.5.10 — roughly
+      21 months stale at the time of this probe, and the 3.9.1 release was a single XSS
+      fix. This is the only decay signal Florist One publishes with a date on it.
+  - language: php
+    registry: null
+    kind: sample-code
+    name: FloristOne_API
+    url: https://github.com/fhwsolutions/FloristOne_API
+    official: false
+    official_evidence: >-
+      Hosted under fhwsolutions, not the Florist One GitHub organization, and the
+      repository README points at https://github.com/FloristOne/FloristOne_API/wiki for
+      the documentation — a first-party location that now returns 404. Treated as
+      partner/contractor-published sample code, not a first-party package.
+    version: null
+    published: '2017-05-05'
+    note: >-
+      No registry: this is a repository of PHP and ColdFusion curl snippets, one file per
+      endpoint, with no installable artifact and no releases or tags. `version: null`
+      because there is nothing versioned to read; `published` is the last push date from
+      the GitHub API. It is the source the openapi/ description in this repo was derived
+      from.
+  - language: python
+    registry: pypi
+    kind: client-library
+    name: pyflorist
+    url: https://pypi.org/project/pyflorist/
+    install: pip install pyflorist
+    official: false
+    official_evidence: >-
+      Authored by "reed jones" (https://github.com/reedjones/pyflorist), unaffiliated
+      with Florist One. Community wrapper.
+    version: '0.1'
+    published: '2024-09-30'
+registries_probed:
+  - {registry: npm, query: floristone / "florist one flower api", first_party_hits: 0}
+  - {registry: pypi, first_party_hits: 0, note: "pyflorist is third-party; /pypi/floristone/json is 404"}
+  - {registry: rubygems, first_party_hits: 0}
+  - {registry: nuget, first_party_hits: 0, note: "azuresearch query totalHits 0"}
+  - {registry: packagist, first_party_hits: 0}
+  - {registry: maven-central, first_party_hits: 0}
+  - {registry: crates.io, first_party_hits: 0}
+  - {registry: pkg.go.dev, first_party_hits: 0}
+  - {registry: wordpress.org, first_party_hits: 1}
+github:
+  organization: https://github.com/FloristOne
+  public_repos: 0
+  note: >-
+    The Florist One GitHub organization exists and the page resolves, but it publishes
+    zero public repositories. The wiki its partner repo cites,
+    https://github.com/FloristOne/FloristOne_API/wiki, is 404 — the first-party
+    documentation that once lived there is gone.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

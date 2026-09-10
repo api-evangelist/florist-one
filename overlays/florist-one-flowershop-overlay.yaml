@@ -1,0 +1,77 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Florist One FlowerShop API
+  version: 1.0.0
+x-generated: '2026-09-10'
+x-method: generated
+x-source: >-
+  Derived from Florist One's own published sample code at
+  https://github.com/fhwsolutions/FloristOne_API, the public documentation at
+  https://www.floristone.com/api/how-it-works/ and
+  https://www.floristone.com/api/flowers-api-faq/, the API Agreement at
+  https://www.floristone.com/api/print_api_legal/, and one live probe of
+  https://www.floristone.com/api/rest on 2026-09-10. Applies our findings without mutating
+  the harvested description.
+extends: openapi/florist-one-flowershop-api-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-profile: https://apis.io/provider/florist-one/
+      x-contract-provenance: >-
+        Florist One publishes no OpenAPI. This description was written by API Evangelist
+        from the provider's public PHP and ColdFusion sample code and its public
+        documentation. It is a third-party description, not a provider artifact.
+      x-docs-gated: >-
+        The endpoint-level documentation at
+        https://www.floristone.com/api/technical-information/ is behind an API Key and
+        password login, so parameter semantics beyond the names below are unverified.
+  - target: $.servers
+    update:
+      x-base-url-note: >-
+        The callable base is https://www.floristone.com/api/rest. The /api/ path is the
+        marketing and documentation site and is not an API host.
+  - target: $.components.securitySchemes.basicAuth
+    update:
+      x-wire-format: 'Authorization: <base64(apikey:password)>'
+      x-rfc7617-conformant: false
+      x-wire-format-note: >-
+        Every published Florist One sample omits the "Basic " scheme prefix required by
+        RFC 7617. See authentication/florist-one-authentication.yml.
+      x-no-www-authenticate: >-
+        An unauthenticated request returns 403 with no WWW-Authenticate challenge and a
+        text/html IIS error page.
+  - target: $.paths
+    update:
+      x-error-envelope: >-
+        No error responses are declared by the provider and none are documented. The one
+        observed failure (403, unauthenticated) returns text/html, not JSON and not
+        application/problem+json. See errors/florist-one-problem-types.yml.
+      x-response-field-casing: >-
+        Response keys are UPPERCASE (PRODUCTS, CODE, PRICE, ORDERNO, SUBTOTAL, ITEMS,
+        RECIPIENT). A case-sensitive client written against lowercase keys will fail.
+      x-rate-limit-signal: >-
+        None. No RateLimit-*, X-RateLimit-* or Retry-After header is emitted. See
+        rate-limits/florist-one-rate-limits.yml.
+      x-idempotency: >-
+        Not supported anywhere on this API. See conventions/florist-one-conventions.yml.
+  - target: $.paths['/flowershop/placeorder'].post
+    update:
+      x-consequence: >-
+        Irreversible. This operation charges a payment method and dispatches a local
+        florist. The published contract exposes no cancel, void or refund operation, and
+        the API Agreement states that all credits and refunds are at Florist One's sole
+        discretion with no stated window.
+      x-request-encoding: >-
+        application/x-www-form-urlencoded body whose products, customer and ccinfo fields
+        each carry a JSON-encoded document as a string, not a JSON request body.
+      x-no-idempotency-key: >-
+        A retried request produces a second real flower delivery. There is no key to
+        collapse duplicates on.
+  - target: $.paths['/flowershop/getproducts'].get
+    update:
+      x-pagination: >-
+        Offset paging via start (1-based) and count. No total, cursor, or has-more field is
+        returned, so end-of-collection can only be inferred from a short page.
+      x-category-vocabulary: >-
+        The category codes are short opaque strings (e.g. fx) and no operation enumerates
+        them. The vocabulary is not published on the open web.

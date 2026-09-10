@@ -1,0 +1,46 @@
+generated: '2026-09-10'
+method: generated
+source: >-
+  openapi/ in this repo, https://www.floristone.com/api/how-it-works/,
+  https://www.floristone.com/api/flowers-api-faq/,
+  https://www.floristone.com/api/print_api_legal/, and Florist One's published sample code
+  at https://github.com/fhwsolutions/FloristOne_API
+grounding_note: >-
+  The specs in openapi/ declare no operationId on any operation, so every skill below cites
+  its steps by HTTP method and path — each one verified to exist verbatim in the referenced
+  spec. No operationId was invented to fill the gap.
+skills:
+  - file: florist-one-browse-and-price-flowers.md
+    name: Browse and price Florist One flowers
+    api: openapi/florist-one-flowershop-api-openapi.yml
+    operations:
+      - GET /flowershop/getproducts
+      - GET /flowershop/checkdeliverydate
+      - GET /flowershop/gettotal
+      - GET /giftbaskets/getproducts
+      - GET /giftbaskets/gettotal
+    risk: read-only
+  - file: florist-one-place-and-track-a-flower-order.md
+    name: Place and track a Florist One flower order
+    api: openapi/florist-one-flowershop-api-openapi.yml
+    operations:
+      - GET /flowershop/gettotal
+      - POST /flowershop/placeorder
+      - GET /flowershop/getorderinfo
+      - POST /giftbaskets/placeorder
+    risk: irreversible-spend
+    risk_note: >-
+      Charges a card and dispatches a florist. No reversal operation, no reversal window,
+      no idempotency key, no sandbox.
+  - file: florist-one-manage-a-shopping-cart.md
+    name: Manage a Florist One shopping cart
+    api: openapi/florist-one-shoppingcart-api-openapi.yml
+    operations:
+      - POST /shoppingcart
+      - GET /shoppingcart
+      - DELETE /shoppingcart
+    risk: reversible-write
+provider_published_skills: none
+provider_published_skills_evidence: >-
+  No AGENTS.md, skills directory, or agent guidance exists on www.floristone.com or in the
+  Florist One GitHub organization, which publishes zero public repositories.

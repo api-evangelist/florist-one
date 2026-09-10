@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Florist One REST Affiliate GiftBaskets API
+  title: Florist One REST Affiliate Gift Baskets API
   version: '1.0'
   description: 'Best-effort OpenAPI 3.1 description of the Florist One REST API, derived
 

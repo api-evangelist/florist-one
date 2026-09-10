@@ -1,0 +1,103 @@
+generated: '2026-09-10'
+method: derived
+source: >-
+  openapi/_original/florist-one-openapi.yml,
+  https://www.floristone.com/api/print_api_legal/,
+  https://www.floristone.com/api/how-it-works/,
+  security/florist-one-domain-security.yml,
+  well-known/florist-one-well-known.yml
+description: >-
+  Cross-cutting standards posture for the Florist One REST API. Almost every entry is a
+  negative, and the negatives are the finding: this is a 2014-era ColdFusion/Taffy REST
+  surface that predates most of the conventions below and has not been revised toward them.
+standards:
+  - id: http-basic-auth
+    conforms: partial
+    evidence: >-
+      openapi securitySchemes declares type http / scheme basic, but Florist One's own
+      sample code sends the base64 credential in Authorization with no "Basic " scheme
+      prefix, which is not RFC 7617 form. See conventions/florist-one-conventions.yml.
+  - id: oauth2
+    conforms: false
+    evidence: No oauth2 securityScheme in any spec; no OAuth is documented.
+  - id: oidc
+    conforms: false
+    evidence: /.well-known/openid-configuration returned 404 on every host probed.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      No application/problem+json anywhere. The observed 403 returns a text/html IIS error
+      page. See errors/florist-one-problem-types.yml.
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: /.well-known/security.txt returned 404 on www.floristone.com.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: >-
+      No Sunset or Deprecation header support is documented. Change notice is contractual
+      (30 days, API Agreement section 2.2), not header-borne.
+  - id: idempotency-key
+    conforms: false
+    evidence: >-
+      No idempotency mechanism on a surface whose writes charge cards and dispatch
+      florists. See conventions/florist-one-conventions.yml.
+  - id: pagination
+    conforms: partial
+    evidence: >-
+      start/count offset paging on the two getproducts operations, with no total, cursor,
+      or has-more field in the response.
+  - id: json-api
+    conforms: false
+    evidence: Bare JSON objects with UPPERCASE keys; no JSON:API document structure.
+  - id: openapi
+    conforms: false
+    evidence: >-
+      Florist One publishes no OpenAPI. The specs in openapi/ are API Evangelist
+      descriptions derived from Florist One's public sample code, not a provider artifact.
+  - id: asyncapi
+    conforms: false
+    evidence: No event, streaming, or webhook surface is documented.
+  - id: pci-dss
+    conforms: false
+    evidence: >-
+      The API Agreement states only that "Provider's payment processors have informed
+      Provider that they are PCI DSS compliant" — an assertion about Authorize.Net and
+      Stripe, not a Florist One certification. Florist One publishes no PCI DSS attestation
+      of its own, and no trust centre or certification page exists (probe-security-programs
+      found none; trust.floristone.com does not resolve).
+  - id: gdpr
+    conforms: unknown
+    evidence: >-
+      A privacy policy is published at https://www.floristone.com/privacy/ and the API
+      Agreement obliges the integrator to post one, but no GDPR, DPA, or subprocessor
+      documentation is published.
+  - id: hsts
+    conforms: false
+    evidence: >-
+      security/florist-one-domain-security.yml records hsts false on www.floristone.com
+      despite TLSv1.3 and a valid certificate.
+  - id: dnssec
+    conforms: false
+    evidence: security/florist-one-domain-security.yml records dnssec false for floristone.com.
+domain_standards:
+  probed:
+    - id: gs1-floral
+      conforms: false
+      note: No floral-industry product identifier scheme is declared. Product codes are proprietary Florist One SKUs of the form F1-509.
+    - id: ogc
+      conforms: false
+      note: Not a geospatial provider. No conformance or GetCapabilities surface probed or expected.
+    - id: openrtb
+      conforms: false
+    - id: scim
+      conforms: false
+    - id: odata
+      conforms: false
+  finding: >-
+    Florist retail and flower wire-service fulfillment has no widely published open API
+    standard for a provider of this shape to declare, so no domain-standard conformance is
+    asserted. This is a reward-only dimension and its absence is not a defect.
+compliance_pointer_note: >-
+  No `Compliance` pointer is wired in apis.yml. Florist One publishes no certification,
+  audit report, or compliance programme of its own — the only compliance sentence on the
+  public surface is about its payment processors.
