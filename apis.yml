@@ -125,21 +125,19 @@ apis:
     url: openapi/florist-one-giftbaskets-api-openapi.yml
   - type: Overlay
     url: overlays/florist-one-giftbaskets-overlay.yaml
-- aid: florist-one:florist-one-shoppingcart-api
-  name: Florist One ShoppingCart API
-  description: The ShoppingCart API from Florist One — 1 operation(s) for shoppingcart.
+- aid: florist-one:florist-one-shopping-cart-api
+  name: Florist One Shopping Cart API
+  description: The Shopping Cart API from Florist One — 1 operation(s) for shopping cart.
   humanURL: https://www.floristone.com/api/
   baseURL: https://www.floristone.com/api/rest
   tags:
   - Shopping Cart
-  tags_raw:
-  - ShoppingCart
   properties:
   - type: OpenAPI
-    url: openapi/florist-one-shoppingcart-api-openapi.yml
+    url: openapi/florist-one-shopping-cart-api-openapi.yml
+common:
   - type: Overlay
     url: overlays/florist-one-shoppingcart-overlay.yaml
-common:
   - type: AgenticAccess
     url: agentic-access/florist-one-agentic-access.yml
   - type: DomainSecurity
