@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Florist One REST Affiliate Shopping Cart API
+  title: Florist One REST Shopping Cart API
   version: '1.0'
   description: 'Best-effort OpenAPI 3.1 description of the Florist One REST API, derived
 
@@ -12,9 +12,7 @@ info:
 
     authentication with an `API Key` (username) and password issued by Florist
 
-    One. Responses are JSON.
-
-    '
+    One. Responses are JSON.'
   contact:
     name: Florist One
     url: https://www.floristone.com/api/
@@ -24,12 +22,12 @@ servers:
 security:
 - basicAuth: []
 tags:
-- name: ShoppingCart
+- name: Shopping Cart
 paths:
   /shoppingcart:
     get:
       tags:
-      - ShoppingCart
+      - Shopping Cart
       summary: Get shopping cart contents by session id
       parameters:
       - name: sessionid
@@ -40,15 +38,15 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Json'
+      operationId: getShoppingcart
+      x-operation-id-source: derived
     post:
       tags:
-      - ShoppingCart
+      - Shopping Cart
       summary: Create cart, add to cart, remove from cart, or clear cart
       description: 'Action is determined by the `action` query parameter (e.g. `add`,
 
-        `remove`, `clear`) or by omitting it when creating a new cart.
-
-        '
+        `remove`, `clear`) or by omitting it when creating a new cart.'
       parameters:
       - name: sessionid
         in: query
@@ -79,9 +77,11 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Json'
+      operationId: postShoppingcart
+      x-operation-id-source: derived
     delete:
       tags:
-      - ShoppingCart
+      - Shopping Cart
       summary: Destroy shopping cart for a session id
       parameters:
       - name: sessionid
@@ -92,6 +92,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Json'
+      operationId: deleteShoppingcart
+      x-operation-id-source: derived
 components:
   responses:
     Json:

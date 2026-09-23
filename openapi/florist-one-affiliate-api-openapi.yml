@@ -12,9 +12,7 @@ info:
 
     authentication with an `API Key` (username) and password issued by Florist
 
-    One. Responses are JSON.
-
-    '
+    One. Responses are JSON.'
   contact:
     name: Florist One
     url: https://www.floristone.com/api/
@@ -41,6 +39,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Json'
+      operationId: postAffiliateLegalagreement
+      x-operation-id-source: derived
 components:
   responses:
     Json:

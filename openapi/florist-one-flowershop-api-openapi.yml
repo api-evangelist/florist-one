@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Florist One REST Affiliate Flower Shop API
+  title: Florist One REST Flower Shop API
   version: '1.0'
   description: 'Best-effort OpenAPI 3.1 description of the Florist One REST API, derived
 
@@ -12,9 +12,7 @@ info:
 
     authentication with an `API Key` (username) and password issued by Florist
 
-    One. Responses are JSON.
-
-    '
+    One. Responses are JSON.'
   contact:
     name: Florist One
     url: https://www.floristone.com/api/
@@ -55,6 +53,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Json'
+      operationId: getFlowershopGetproducts
+      x-operation-id-source: derived
   /flowershop/checkdeliverydate:
     get:
       tags:
@@ -75,6 +75,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Json'
+      operationId: getFlowershopCheckdeliverydate
+      x-operation-id-source: derived
   /flowershop/gettotal:
     get:
       tags:
@@ -99,6 +101,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Json'
+      operationId: getFlowershopGettotal
+      x-operation-id-source: derived
   /flowershop/placeorder:
     post:
       tags:
@@ -114,6 +118,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Json'
+      operationId: postFlowershopPlaceorder
+      x-operation-id-source: derived
   /flowershop/getorderinfo:
     get:
       tags:
@@ -128,6 +134,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Json'
+      operationId: getFlowershopGetorderinfo
+      x-operation-id-source: derived
 components:
   responses:
     Json:

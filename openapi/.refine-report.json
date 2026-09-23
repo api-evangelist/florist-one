@@ -1,10 +1,7 @@
 {
   "provider": "florist-one",
   "sources": [
-    "florist-one-affiliate-api-openapi.yml",
-    "florist-one-flowershop-api-openapi.yml",
-    "florist-one-giftbaskets-api-openapi.yml",
-    "florist-one-shoppingcart-api-openapi.yml"
+    "_original/florist-one-openapi.yml"
   ],
   "outputs": [
     "florist-one-affiliate-api-openapi.yml",
@@ -12,15 +9,21 @@
     "florist-one-giftbaskets-api-openapi.yml",
     "florist-one-shoppingcart-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
-    "florist-one-affiliate-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "florist-one-flowershop-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "florist-one-giftbaskets-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "florist-one-shoppingcart-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "florist-one-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: florist-one-shopping-cart-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 5 total)"
   ],
-  "skipped": []
+  "skipped": [
+    "florist-one-affiliate-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "florist-one-flowershop-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "florist-one-giftbaskets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "florist-one-shopping-cart-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Florist One REST Affiliate Gift Baskets API
+  title: Florist One REST Gift Baskets API
   version: '1.0'
   description: 'Best-effort OpenAPI 3.1 description of the Florist One REST API, derived
 
@@ -12,9 +12,7 @@ info:
 
     authentication with an `API Key` (username) and password issued by Florist
 
-    One. Responses are JSON.
-
-    '
+    One. Responses are JSON.'
   contact:
     name: Florist One
     url: https://www.floristone.com/api/
@@ -55,6 +53,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Json'
+      operationId: getGiftbasketsGetproducts
+      x-operation-id-source: derived
   /giftbaskets/gettotal:
     get:
       tags:
@@ -69,6 +69,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Json'
+      operationId: getGiftbasketsGettotal
+      x-operation-id-source: derived
   /giftbaskets/placeorder:
     post:
       tags:
@@ -84,6 +86,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Json'
+      operationId: postGiftbasketsPlaceorder
+      x-operation-id-source: derived
 components:
   responses:
     Json:
