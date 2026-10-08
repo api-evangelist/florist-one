@@ -136,6 +136,8 @@ apis:
   - type: OpenAPI
     url: openapi/florist-one-shopping-cart-api-openapi.yml
 common:
+  - type: FinOps
+    url: finops/florist-one-finops.yml
   - type: Overlay
     url: overlays/florist-one-shoppingcart-overlay.yaml
   - type: AgenticAccess
