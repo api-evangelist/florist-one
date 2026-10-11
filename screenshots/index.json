@@ -1,0 +1,11 @@
+[
+  {
+    "repo": "florist-one",
+    "captured_at": "2026-10-11T185241",
+    "source_url": "https://www.floristone.com/api/",
+    "source_type": "DeveloperPortal",
+    "file": "florist-one-2026-10-11T185241.png",
+    "bytes": 215566,
+    "capture": "playwright-local"
+  }
+]
