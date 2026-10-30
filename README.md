@@ -1,4 +1,4 @@
-# Florist One (florist-one)
+# Florist One
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,64 +66,144 @@
 
 Florist One is an online flower delivery service that specializes in creating and delivering floral arrangements through a network of local florists across the United States and Canada. Florist One offers a free REST web service that lets developers integrate flower products, ordering, and delivery into their own applications. The API is documented for use from any common web language including Java, PHP, ASP.NET, JavaScript, Node, Python, Perl, Ruby, and ColdFusion.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/florist-one/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/florist-one/refs/heads/main/apis.yml)
+**Areas:** Delivery · E-Commerce · Florists · Flowers · Gifts
 
-## Scope
+## Florist One on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Florist One is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/florist-one/](https://apis.io/providers/florist-one/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (5)
 
-- Delivery
-- Ecommerce
-- Florists
-- Flowers
-- Gifts
+- [Florist One API](https://apis.io/apis/florist-one/florist-one-api/) — Florist One provides a free REST API for searching available flower products, retrieving product details and imagery, placing orders for delivery through…
+- [Florist One Affiliate API](https://apis.io/apis/florist-one/florist-one-affiliate-api/) — The Affiliate API from Florist One — 1 operation(s) for affiliate.
+- [Florist One FlowerShop API](https://apis.io/apis/florist-one/florist-one-flowershop-api/) — The FlowerShop API from Florist One — 5 operation(s) for flowershop.
+- [Florist One GiftBaskets API](https://apis.io/apis/florist-one/florist-one-giftbaskets-api/) — The GiftBaskets API from Florist One — 3 operation(s) for giftbaskets.
+- [Florist One Shopping Cart API](https://apis.io/apis/florist-one/florist-one-shopping-cart-api/) — The Shopping Cart API from Florist One — 1 operation(s) for shopping cart.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-02-24
-- **Modified:** 2026-04-28
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### MCP servers (1)
 
-### Florist One API
+Model Context Protocol servers that expose the API to agents.
 
-Florist One provides a free REST API for searching available flower products, retrieving product details and imagery, placing orders for delivery through the Florist One network, and checking order status. The API is designed for ecommerce, gifting, and concierge integrations that want to offer same-day or next-day flower delivery.
+- [florist-one](https://apis.io/servers/florist-one/florist-one/)
 
-- **Human URL:** [https://www.floristone.com/api/](https://www.floristone.com/api/)
-- **Base URL:** `https://www.floristone.com/api/`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Delivery
-- Ecommerce
-- Florists
-- Flowers
-- Gifts
+- [Florist One Agentic Access](https://apis.io/agentic-access/florist-one/florist-one-agentic-access/)
 
-#### Properties
+#### Collections (5)
 
-- [Documentation](https://www.floristone.com/api/)
-- [Technical Information](https://www.floristone.com/api/technical-information/)
-- [How It Works](https://www.floristone.com/api/how-it-works/)
-- [F A Q](https://www.floristone.com/api/flowers-api-faq/)
-- [Contact](https://www.floristone.com/api/api-contact/)
-- [Postman Collection](collections/florist-one.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/florist-one.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Postman and Open Collection request collections.
 
-## Common Properties
+- [Florist One REST API](https://apis.io/collections/florist-one/open-florist-one/)
+- [Florist One REST Affiliate API](https://apis.io/collections/florist-one/open-florist-one-affiliate-api/)
+- [Florist One REST Affiliate FlowerShop API](https://apis.io/collections/florist-one/open-florist-one-flowershop-api/)
+- [Florist One REST Affiliate GiftBaskets API](https://apis.io/collections/florist-one/open-florist-one-giftbaskets-api/)
+- [Florist One REST Affiliate ShoppingCart API](https://apis.io/collections/florist-one/open-florist-one-shoppingcart-api/)
 
-- [GitHub Organization](https://github.com/FloristOne)
+#### Overlays (4)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Florist One Affiliate Overlay](https://apis.io/overlays/florist-one/florist-one-affiliate-overlay/)
+- [Florist One Flowershop Overlay](https://apis.io/overlays/florist-one/florist-one-flowershop-overlay/)
+- [Florist One Giftbaskets Overlay](https://apis.io/overlays/florist-one/florist-one-giftbaskets-overlay/)
+- [Florist One Shoppingcart Overlay](https://apis.io/overlays/florist-one/florist-one-shoppingcart-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Florist One Authentication](https://apis.io/security/florist-one/florist-one-authentication/)
+- [Florist One Domain Security](https://apis.io/security/florist-one/florist-one-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Florist One Plans Pricing](https://apis.io/plans/florist-one/florist-one-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Florist One Rate Limits](https://apis.io/rate-limits/florist-one/florist-one-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Florist One Finops](https://apis.io/finops/florist-one/florist-one-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.floristone.com/)
 - [Documentation](https://www.floristone.com/api/)
-- [Technical Information](https://www.floristone.com/api/technical-information/)
-- [F A Q](https://www.floristone.com/api/flowers-api-faq/)
-- [Contact](https://www.floristone.com/api/api-contact/)
+- [Getting started](https://www.floristone.com/api/how-it-works/)
+- [Sign up](https://www.floristone.com/api/api-signup/)
+- [Support](https://www.floristone.com/api/api-contact/)
+- [Terms of service](https://www.floristone.com/api/print_api_legal/)
+- [Privacy policy](https://www.floristone.com/privacy/)
+- [GitHub](https://github.com/FloristOne)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 40.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 45.3 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 49.4 |
+| Access clarity | 55.3 |
+
+**Agent readiness 25.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/florist-one/](https://apis.io/providers/florist-one/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Florist One: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/florist-one/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
