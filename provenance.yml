@@ -5,10 +5,19 @@ artifacts:
   agentic-access/florist-one-agentic-access.yml:
     method: generated
     evidence: declared in the artifact
+  ai-preferences/florist-one-ai-preferences.yml:
+    method: harvested
+    evidence: declared in the artifact
   authentication/florist-one-authentication.yml:
     method: searched
     evidence: declared in the artifact
   capabilities/florist-one-capability-edges.yml:
+    method: unknown
+    evidence: no authorship recorded
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
     method: unknown
     evidence: no authorship recorded
   changelog/florist-one-changelog.yml:
@@ -50,8 +59,17 @@ artifacts:
   conventions/florist-one-conventions.yml:
     method: searched
     evidence: declared in the artifact
+  data-license/florist-one-data-license.yml:
+    method: harvested
+    evidence: declared in the artifact
   data-model/florist-one-data-model.yml:
     method: derived
+    evidence: declared in the artifact
+  deprecation/florist-one-deprecation-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
+  eligibility/florist-one-eligibility.yml:
+    method: harvested
     evidence: declared in the artifact
   errors/florist-one-problem-types.yml:
     method: unknown
@@ -71,7 +89,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -137,6 +155,9 @@ artifacts:
   kin/score-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-06T143934.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/florist-one-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
@@ -183,6 +204,9 @@ artifacts:
   plans/florist-one-plans-pricing.yml:
     method: searched
     evidence: declared in the artifact
+  privacy/florist-one-privacy-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
   rate-limits/florist-one-rate-limits.yml:
     method: unknown
     evidence: no authorship recorded
@@ -206,6 +230,9 @@ artifacts:
     evidence: declared in the artifact
   sla/florist-one-sla.yml:
     method: generated
+    evidence: declared in the artifact
+  terms/florist-one-terms-of-service.yml:
+    method: harvested
     evidence: declared in the artifact
   well-known/florist-one-well-known.yml:
     method: unknown
